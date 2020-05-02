@@ -60,7 +60,9 @@ def register():
             return jsonify({"Error":"Field can not be blank", "status":0})
         
         transaction_ref1 = request_data['transaction_ref_token']
-        transaction_ref_token = str(transaction_ref1_token)
+        transaction_ref_token = str(transaction_ref1)
+        if not transaction_ref_token:
+            return jsonify({"Error":"Field can not be blank", "status":0})
         
       
         find_reg_id ={'account_number':account_number,
