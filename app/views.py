@@ -29,9 +29,7 @@ def get_all_transactions():
                         'account_number':r['account_number'],
                         'account_type':r['account_type'],
                         'transaction_value':r['transaction_value'],
-                        'transaction_ref':r['transaction_ref'],
-                        'token':r['token'
-                        ]})
+                        'transaction_ref_token':r['transaction_ref_token']})
         
         return jsonify({'result' : output})
     except Exception:
@@ -61,28 +59,16 @@ def register():
         if not transaction_value:
             return jsonify({"Error":"Field can not be blank", "status":0})
         
-        transaction_ref1 = request_data['transaction_ref']
-        transaction_ref = str(transaction_ref1)
-        if not transaction_ref:
-            return jsonify({"Error":"Field can not be blank", "status":0})
+        transaction_ref1 = request_data['transaction_ref_token']
+        transaction_ref_token = str(transaction_ref1_token)
         
-        token1 = request_data['token']
-        token = str(token1)
-        if not token:
-            return jsonify({"Error":"Field can not be blank", "status":0})
-        
+      
         find_reg_id ={'account_number':account_number,
                                     'account_type':account_type,
                                     'transaction_value':transaction_value,
-                                    'transaction_ref':transaction_ref,
-                                    'token':token}
-        
-        q = transactions.find_one(find_reg_id) 
-    
-        if q:
-            return jsonify({"Error":"Transaction has been save", "status":0})
-        else:
-            reg_id = transactions.insert_one(find_reg_id)
+                                    'transaction_ref_token':transaction_ref_token}
+          
+        transactions.insert_one(find_reg_id)
 
         return jsonify({"Message": "Transaction has been saved", "status":1})
 
