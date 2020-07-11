@@ -41,28 +41,28 @@ def get_all_transactions():
 @app.route('/ikeja_electic_transaction', methods = ['POST'])
 def register():
     """This route saves data to database by specifying mongo.<dbname>.<collection name>.insert()"""
-    try:
-        transactions = mongo.db.transactions_
-        request_data = request.get_json()
-        account_number1 = request_data['account_number']
-        account_number= int(account_number1)
-        if not account_number:
-            return jsonify({"Error":"Field can not be blank", "status":0})
-        
-        account_type1 = request_data['account_type']
-        account_type = str(account_type1)
-        if not account_type:
-            return jsonify({"Error":"Field can not be blank", "status":0})
-        
-        transaction_val = request_data['transaction_value']
-        transaction_value = int(transaction_val)
-        if not transaction_value:
-            return jsonify({"Error":"Field can not be blank", "status":0})
-        
-        transaction_ref1 = request_data['transaction_ref_token']
-        transaction_ref_token = str(transaction_ref1)
-        if not transaction_ref_token:
-            return jsonify({"Error":"Field can not be blank", "status":0})
+    #try:
+    transactions = mongo.db.transactions_
+    request_data = request.get_json()
+    account_number1 = request_data['account_number']
+    account_number= int(account_number1)
+    if not account_number:
+        return jsonify({"Error":"Field can not be blank", "status":0})
+    
+    account_type1 = request_data['account_type']
+    account_type = str(account_type1)
+    if not account_type:
+        return jsonify({"Error":"Field can not be blank", "status":0})
+    
+    transaction_val = request_data['transaction_value']
+    transaction_value = int(transaction_val)
+    if not transaction_value:
+        return jsonify({"Error":"Field can not be blank", "status":0})
+    
+    transaction_ref1 = request_data['transaction_ref_token']
+    transaction_ref_token = str(transaction_ref1)
+    if not transaction_ref_token:
+        return jsonify({"Error":"Field can not be blank", "status":0})
         
       
         find_reg_id ={'account_number':account_number,
@@ -74,7 +74,7 @@ def register():
 
         return jsonify({"Message": "Transaction has been saved", "status":1})
 
-    except Exception:
+    #except Exception:
         return jsonify({"Message":"Something went wrong Please check"})
 
 
