@@ -80,16 +80,16 @@ def register():
 
 
 
-@app.errorhandler(400)
-def bad_request__error(exception):
-    return jsonify(
-        {
-            "Message": "Sorry you entered wrong values kindly check and resend!"
-        },
-        {
-            "status":400
-        }
-    )
+# @app.errorhandler(400)
+# def bad_request__error(exception):
+#     return jsonify(
+#         {
+#             "Message": "Sorry you entered wrong values kindly check and resend!"
+#         },
+#         {
+#             "status":400
+#         }
+#     )
 
 
 @app.errorhandler(401)
