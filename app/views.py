@@ -19,21 +19,21 @@ def home():
 @app.route('/ikeja_electic_transaction', methods = ['GET'])
 def get_all_transactions():
     """This route gets data from the database by specifying mongo.<dbname>.<collection name>.find_one"""
-    try:
-        transactions = mongo.db.transactions_
-        
-        output = []
+    # try:
+    transactions = mongo.db.transactions_
+    
+    output = []
 
-        for r in transactions.find():
-            output.append({
-                        'account_number':r['account_number'],
-                        'account_type':r['account_type'],
-                        'transaction_value':r['transaction_value'],
-                        'transaction_ref_token':r['transaction_ref_token']})
-        
-        return jsonify({'result' : output})
-    except Exception:
-        return jsonify({"Message":"Something went wrong Please check"})
+    for r in transactions.find():
+        output.append({
+                    'account_number':r['account_number'],
+                    'account_type':r['account_type'],
+                    'transaction_value':r['transaction_value'],
+                    'transaction_ref_token':r['transaction_ref_token']})
+    
+    return jsonify({'result' : output})
+    # except Exception:
+    # return jsonify({"Message":"Something went wrong Please check"})
 
 
 
